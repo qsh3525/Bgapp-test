@@ -10,10 +10,14 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/actions/setup-gradle@v3
+
       - name: Build Debug APK
+        # We use 'gradle' instead of './gradlew' because the wrapper is missing
         run: gradle assembleDebug
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
